@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professional Letter Studio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">DOCUMENT WORKSPACE</p>
+      <h1>Letter Studio</h1>
+    </div>
+    <div class="top-actions">
+      <button class="button button-secondary" id="styleBtn" type="button" aria-label="Change style" title="Click to switch letter style">Style: Forest</button>
+      <button class="button button-secondary" id="resetBtn" type="button">Reset sample</button>
+      <button class="button button-secondary" id="printBtn" type="button">Print</button>
+      <button class="button button-primary" id="downloadPdfBtn" type="button">Download PDF</button>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <section class="editor panel" aria-labelledby="editorHeading">
+      <div class="panel-heading">
+        <div>
+          <p class="eyebrow">CUSTOMIZE</p>
+          <h2 id="editorHeading">Letter details</h2>
+        </div>
+        <span class="status"><span class="status-dot"></span> Live preview</span>
+      </div>
+
+      <form id="letterForm">
+        <fieldset>
+          <legend>Sender</legend>
+          <label for="company">Company / organization</label>
+          <input id="company" name="company" value="NORTHSTAR DIGITAL" maxlength="100">
+          <label for="senderAddress">Sender address</label>
+          <input id="senderAddress" name="senderAddress" value="12 Innovation Avenue, Benin City, Nigeria" maxlength="180">
+          <div class="field-grid">
+            <div>
+              <label for="senderEmail">Email</label>
+              <input id="senderEmail" name="senderEmail" type="email" value="hello@example.com" maxlength="120">
+            </div>
+            <div>
+              <label for="letterDate">Date</label>
+              <input id="letterDate" name="letterDate" type="date">
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Recipient</legend>
+          <label for="recipientName">Recipient name</label>
+          <input id="recipientName" name="recipientName" value="Alex Morgan" maxlength="100">
+          <label for="recipientRole">Title / role (optional)</label>
+          <input id="recipientRole" name="recipientRole" value="Hiring Manager" maxlength="100">
+          <label for="recipientAddress">Recipient address</label>
+          <input id="recipientAddress" name="recipientAddress" value="45 Market Road, Lagos, Nigeria" maxlength="180">
+        </fieldset>
+
+        <fieldset>
+          <legend>Letter content</legend>
+          <label for="letterType">Template type</label>
+          <select id="letterType" name="letterType">
+            <option value="general">Formal business letter</option>
+            <option value="offer">Employment offer letter</option>
+            <option value="appointment">Appointment letter</option>
+            <option value="admission">Admission letter</option>
+          </select>
+          <label for="subject">Subject</label>
+          <input id="subject" name="subject" value="Introduction and next steps" maxlength="180">
+          <label for="greeting">Greeting</label>
+          <input id="greeting" name="greeting" value="Dear Alex Morgan," maxlength="120">
+          <label for="bodyText">Message</label>
+          <textarea id="bodyText" name="bodyText" rows="8" maxlength="6000">We are pleased to write to you regarding the matter stated above.
+
+Please review the details in this letter and contact us if you have any questions. We appreciate your time and look forward to hearing from you.
+
+This sample is for layout demonstration only. Replace it with accurate, authorized content before sending.</textarea>
+          <label for="closing">Closing</label>
+          <input id="closing" name="closing" value="Yours sincerely," maxlength="100">
+          <label for="signerName">Signer's name</label>
+          <input id="signerName" name="signerName" value="Jordan Taylor" maxlength="100">
+          <label for="signerTitle">Signer's title</label>
+          <input id="signerTitle" name="signerTitle" value="Operations Director" maxlength="100">
+        </fieldset>
+      </form>
+      <p class="helper">Tip: This editor runs locally in your browser. It does not send or store your information on a server.</p>
+    </section>
+
+    <section class="preview-column" aria-labelledby="previewHeading">
+      <div class="preview-heading">
+        <div>
+          <p class="eyebrow">DOCUMENT PREVIEW</p>
+          <h2 id="previewHeading">Your letter</h2>
+        </div>
+        <span class="page-label">A4 · Portrait</span>
+      </div>
+
+      <article class="letter" id="letterPreview" aria-label="Letter preview">
+        <div class="letter-topline"></div>
+        <header class="letter-header">
+          <div class="brand-mark" aria-hidden="true">N</div>
+          <div class="brand-info">
+            <h2 id="previewCompany">NORTHSTAR DIGITAL</h2>
+            <p id="previewSenderAddress"></p>
+            <p id="previewSenderContact"></p>
+          </div>
+        </header>
+        <div class="letter-rule"></div>
+
+        <div class="letter-date" id="previewDate"></div>
+        <div class="recipient-block">
+          <p id="previewRecipientName"></p>
+          <p id="previewRecipientRole"></p>
+          <p id="previewRecipientAddress"></p>
+        </div>
+
+        <h3 class="subject-line"><span>SUBJECT</span><span id="previewSubject"></span></h3>
+        <p class="greeting" id="previewGreeting"></p>
+        <div class="letter-body" id="previewBody"></div>
+
+        <div class="signoff">
+          <p id="previewClosing"></p>
+          <div class="signature-space" aria-label="Space reserved for signature"></div>
+          <p class="signer-name" id="previewSignerName"></p>
+          <p class="signer-title" id="previewSignerTitle"></p>
+        </div>
+
+        <footer class="letter-footer">
+          <span id="footerCompany">NORTHSTAR DIGITAL</span>
+          <span>Professional correspondence</span>
+        </footer>
+      </article>
+      <p class="preview-note">Before sending, verify all details. DocuSign signature fields are added in DocuSign, not by this preview.</p>
+    </section>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
